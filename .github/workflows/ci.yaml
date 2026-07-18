@@ -12,11 +12,11 @@ jobs:
           mkdir -p ./qt-install
           cd ./qt-install
           aqt install-qt mac desktop 6.8.2 clang_64 -m all
-          export qt-install6_DIR=./qt-install/6.8.2/macos/
-          export qt-install_PLUGIN_PATH=./qt-install/6.8.2/macos/plugins
-          export PKG_CONFIG_PATH=./qt-install/6.8.2/macos/lib/pkgconfig
-          export QML2_IMPORT_PATH=./qt-install/6.8.2/macos/qml
-          export PATH="./qt-install/6.8.2/macos/bin:$PATH"
+          export Qt6_DIR=$(pwd)/6.8.2/macos/
+          export QT_PLUGIN_PATH=$(pwd)/6.8.2/macos/plugins
+          export PKG_CONFIG_PATH=$(pwd)/6.8.2/macos/lib/pkgconfig
+          export QML2_IMPORT_PATH=$(pwd)/6.8.2/macos/qml
+          export PATH="$(pwd)/6.8.2/macos/bin:$PATH"
           cd ../
           git clone --depth=1 -bdevelopment --single-branch https://github.com/ahrm/sioyek.git
           cd ./sioyek
