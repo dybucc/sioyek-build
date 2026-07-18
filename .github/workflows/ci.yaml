@@ -18,7 +18,7 @@ jobs:
           export QML2_IMPORT_PATH=$(pwd)/6.8.2/macos/qml
           export PATH="$(pwd)/6.8.2/macos/bin:$PATH"
           cd ../
-          git clone --depth=1 -bdevelopment --single-branch https://github.com/ahrm/sioyek.git
+          git clone --depth=1 -bdevelopment --recursive --single-branch https://github.com/ahrm/sioyek.git
           cd ./sioyek
           chmod +x ./build_mac.sh
           MAKE_PARALLEL=8 ./build_mac.sh
