@@ -9,6 +9,7 @@ jobs:
       - name: Install Qt and build
         run: |
           brew install -y cmake make ninja
+          export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
           pip install aqtinstall
           mkdir -p ./qt-install
           cd ./qt-install
