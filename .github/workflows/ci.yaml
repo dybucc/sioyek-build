@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Install Qt and build
+        run: |
+          pip install aqtinstall
+          mkdir -p ./qt-install
+          cd ./qt-install
+          aqt install-qt mac desktop 6.8.2 clang_64 -m all
+          export qt-install6_DIR=./qt-install/6.8.2/macos/
+          export qt-install_PLUGIN_PATH=./qt-install/6.8.2/macos/plugins
+          export PKG_CONFIG_PATH=./qt-install/6.8.2/macos/lib/pkgconfig
+          export QML2_IMPORT_PATH=./qt-install/6.8.2/macos/qml
+          export PATH="./qt-install/6.8.2/macos/bin:$PATH"
+          cd ../
+          git clone --depth=1 -bdevelopment --single-branch https://github.com/ahrm/sioyek.git
+          cd ./sioyek
+          chmod +x ./build_mac.sh
+          setopt PIPE_FAIL PRINT_EXIT_VALUE ERR_RETURN SOURCE_TRACE XTRACE
+          MAKE_PARALLEL=8 ./build_mac.sh
+      - name: Upload binary
+        depends-on: build
+        uses: actions/upload-artifact@v7
+        with:
+          name: sioyek-binary
+          path: ./sioyek/build/sioyek.app
+          if-no-files-found: error
+          archive: false
