@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Install Qt and build
         run: |
+          brew install -y cmake make ninja
           pip install aqtinstall
           mkdir -p ./qt-install
           cd ./qt-install
