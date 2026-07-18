@@ -1,3 +1,6 @@
+# [todo] see into patching upstream with the funky compile-time errors in the
+# CI logs.
+
 on:
   workflow_dispatch:
 
