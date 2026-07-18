@@ -21,7 +21,6 @@ jobs:
           git clone --depth=1 -bdevelopment --single-branch https://github.com/ahrm/sioyek.git
           cd ./sioyek
           chmod +x ./build_mac.sh
-          setopt PIPE_FAIL PRINT_EXIT_VALUE ERR_RETURN SOURCE_TRACE XTRACE
           MAKE_PARALLEL=8 ./build_mac.sh
       - name: Upload binary
         uses: actions/upload-artifact@v7
